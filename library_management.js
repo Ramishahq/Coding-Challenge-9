@@ -52,34 +52,8 @@ calculateTotalBooksAvailable() {
         });
     }
 }
-
-// Creating Fiction Section and Romantic Section
 let fictionSection = new Section("Fiction");
 let romanticSection = new Section("Romantic");
-
-let fictionBook1 = new Book("1984", "George Orwell", "1234567890");
-let fictionBook2 = new Book("Brave New World", "Aldous Huxley", "0987654321");
-let romanticBook1 = new Book("Pride and Prejudice", "Jane Austen", "1122334455");
-let romanticBook2 = new Book("The Notebook", "Nicholas Sparks", "6677889900");
-
-// Adding two genres books 
-fictionSection.addBook(fictionBook1);
-fictionSection.addBook(fictionBook2);
-romanticSection.addBook(romanticBook1);
-romanticSection.addBook(romanticBook2);
-
-// Marking one book as borrowed
-fictionBook2.isAvailable = false;  // Brave New World is borrowed
-
-// List all books in Fiction and Romantic section
-console.log("Fiction Section Books:");
-fictionSection.listBooks();
-console.log("Romantic Section Books:");
-romanticSection.listBooks();
-
-// Get total available books in each section
-console.log(`Available books in Fiction: ${fictionSection.getAvailableBooks()}`);
-console.log(`Available books in Romantic: ${romanticSection.getAvailableBooks()}`);
 
 // Task 3: Create a Patron class
 class Patron {
@@ -117,24 +91,6 @@ class Patron {
     }
 }
 
-// Example usage:
-
-// Create a patron
-let patron1 = new Patron("Alice");
-
-// Borrowing books
-patron1.borrowBook(fictionBook1);  
-patron1.borrowBook(fictionBook2);  
-
-// Returning books using your method
-patron1.returnBook(fictionBook1);  
-patron1.returnBook(fictionBook2);  
-
-// output
-//Alice borrowed "1984".
-//Brave New World is not available at this time.
-//Alice returned "1984"
-//Alice doesn't have "Brave New World" borrowed.
 
 // Task 4 Create a VIPPatron Class that Inherits from Patron
 
@@ -153,7 +109,46 @@ class VIPPatron extends Patron {
         }
     }
 }
-let vipPatron1 = new VIPPatron("Bob");
+
+
+//Task 6 Create and Manage Sections and Patrons
+
+let fictionBook1 = new Book("1984", "George Orwell", "1234567890");
+let fictionBook2 = new Book("Brave New World", "Aldous Huxley", "0987654321");
+let romanticBook1 = new Book("Pride and Prejudice", "Jane Austen", "1122334455");
+let romanticBook2 = new Book("The Notebook", "Nicholas Sparks", "6677889900");
+
+// Adding two genres books 
+fictionSection.addBook(fictionBook1);
+fictionSection.addBook(fictionBook2);
+romanticSection.addBook(romanticBook1);
+romanticSection.addBook(romanticBook2);
+
+// Marking one book as borrowed
+fictionBook2.isAvailable = false;  
+
+// List all books in Fiction and Romantic section
+console.log("Fiction Section Books:");
+fictionSection.listBooks();
+console.log("Romantic Section Books:");
+romanticSection.listBooks();
+
+// Get total available books in each section
+console.log(`Available books in Fiction: ${fictionSection.getAvailableBooks()}`);
+console.log(`Available books in Romantic: ${romanticSection.getAvailableBooks()}`);
+
+// Create a patron
+let patron1 = new Patron("Habil");
+
+// Borrowing books
+patron1.borrowBook(fictionBook1);  
+patron1.borrowBook(fictionBook2);  
+
+// Returning books using your method
+patron1.returnBook(fictionBook1);  
+patron1.returnBook(fictionBook2);  
+
+let vipPatron1 = new VIPPatron("Sreela");
 
 // VIP Patron borrowing a book
 vipPatron1.borrowBook(fictionBook2);  
@@ -164,3 +159,25 @@ console.log("Fiction Section Books after VIP borrowing:");
 fictionSection.listBooks();
 console.log("Romantic Section Books after VIP borrowing:");
 romanticSection.listBooks();
+
+// Output
+// Fiction Section Books:
+// Title: 1984, Availability: Available
+// Title: Brave New World, Availability: Borrowed
+// Romantic Section Books:
+// Title: Pride and Prejudice, Availability: Available
+// Title: The Notebook, Availability: Available
+// Available books in Fiction: 1
+// Available books in Romantic: 2
+// Habil borrowed "1984".
+// Brave New World is not available at this time.
+// Habil returned "1984"
+// Habil doesn't have "Brave New World" borrowed.
+// VIP Sreela does not have "Brave New World".
+// VIP Sreela has "Pride and Prejudice".
+// Fiction Section Books after VIP borrowing:
+// Title: 1984, Availability: Available
+// Title: Brave New World, Availability: Borrowed
+// Romantic Section Books after VIP borrowing:
+// Title: Pride and Prejudice, Availability: Borrowed
+// Title: The Notebook, Availability: Available
