@@ -39,7 +39,11 @@ class Section {
     getAvailableBooks() {
         return this.books.filter(book => book.isAvailable).length;
     }
+// Task 5 Handle Books Borrowing and Returning
 
+calculateTotalBooksAvailable() {
+    return this.getAvailableBooks(); 
+}
 
     // List all books in the section with their availability
     listBooks() {
