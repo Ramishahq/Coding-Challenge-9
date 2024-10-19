@@ -40,6 +40,7 @@ class Section {
         return this.books.filter(book => book.isAvailable).length;
     }
 
+
     // List all books in the section with their availability
     listBooks() {
         this.books.forEach(book => {
@@ -118,9 +119,44 @@ class Patron {
 let patron1 = new Patron("Alice");
 
 // Borrowing books
-patron1.borrowBook(fictionBook1);  // Alice borrows 1984
-patron1.borrowBook(fictionBook2);  // Alice tries to borrow Brave New World (unavailable)
+patron1.borrowBook(fictionBook1);  
+patron1.borrowBook(fictionBook2);  
 
 // Returning books using your method
-patron1.returnBook(fictionBook1);  // Alice returns 1984
-patron1.returnBook(fictionBook2);  // Alice tries to return Brave New World (which she didn't borrow)
+patron1.returnBook(fictionBook1);  
+patron1.returnBook(fictionBook2);  
+
+// output
+//Alice borrowed "1984".
+//Brave New World is not available at this time.
+//Alice returned "1984"
+//Alice doesn't have "Brave New World" borrowed.
+
+// Task 4 Create a VIPPatron Class that Inherits from Patron
+
+class VIPPatron extends Patron {
+    constructor(name, priority ) {
+        super(name); 
+        this.priority = priority;
+    }
+    borrowBook(book) {
+        if (book.isAvailable) {
+            this.borrowedBooks.push(book);
+            book.isAvailable = false; 
+            console.log(`VIP ${this.name} has "${book.title}".`);
+        } else {
+            console.log(`VIP ${this.name} does not have "${book.title}".`);
+        }
+    }
+}
+let vipPatron1 = new VIPPatron("Bob");
+
+// VIP Patron borrowing a book
+vipPatron1.borrowBook(fictionBook2);  
+vipPatron1.borrowBook(romanticBook1);  
+
+// List all books after VIP patron borrowing
+console.log("Fiction Section Books after VIP borrowing:");
+fictionSection.listBooks();
+console.log("Romantic Section Books after VIP borrowing:");
+romanticSection.listBooks();
