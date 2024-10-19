@@ -4,7 +4,7 @@ class Book {
         this.title = title;
         this.author = author;
         this.ISBN = ISBN;
-        this._availabilityStatus = true;  // Renamed internal variable to avoid conflict
+        this._availabilityStatus = true;  
     }
 
     // Getter for availability
